@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'teste_maxima';
-  page='';
+  page= this.changePage();
+
+  changePage(){
+    if(location.href.lastIndexOf("cliente/novo") != -1)
+      return "cliente/novo"
+    else
+      return ""
+  }
 }

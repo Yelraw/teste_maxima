@@ -21,10 +21,18 @@ export class ChartMapComponent implements OnInit {
     private lat: number = DEFAULT_LAT;
     private lon: number = DEFAULT_LON;
 
+    countries: any[] = [];
+
+    selectedClient: any = {};
+
+    onChangeClient(cliente: any){
+      if(cliente != undefined)
+      this.adicionaMarcadoresIndividual(cliente);
+    }
+
+
     @Input() data: any = [];
     @Input() titulo: string = TITULO ;
-    // @Input() altura: number;
-    // @Input() largura: number;
    
     constructor() {
     }
@@ -47,27 +55,26 @@ export class ChartMapComponent implements OnInit {
       clientes.map(
         (cliente: any)  => {
           console.log(cliente.lat)
-          var marker = L.marker([cliente.lat, cliente.lon]).bindPopup(cliente.name);
+          var marker = L.marker([cliente.lat, cliente.lon]).bindPopup("Nome: "+cliente.name +"\n"+ "CNPJ: "+ cliente.cnpj);
           marker.addTo(this.map);
         }
-        //funcionalidade de buscar por endereço ao inves de latitude e longitude
-        /*
-          (cliente: any) => this.encontrarEndereco(cliente).then(response => {
-            var dados: any = response;
-            var marker = L.marker([dados.lat, dados.lon]).bindPopup(cliente.nome);
-            
-            if(clientes.lenght > 0 && this.map != null){
-              this.map.eachLayer((layer: any) => {
-                if (!(layer instanceof L.TileLayer)) {
-                  this.map.removeLayer(layer);
-                }
-              });
-            }         
-            marker.addTo(this.map);
-          })
-        */
       )
       
+    }
+
+    adicionaMarcadoresIndividual(cliente: any){
+      var marker = L.marker([cliente.lat, cliente.lon]).bindPopup(cliente.name);
+      marker.addTo(this.map); 
+    }
+
+    removerMarcacoes(){
+      if(this.map != null){
+        this.map.eachLayer((layer:any) => {
+          if (!(layer instanceof L.TileLayer)) {
+            this.map.removeLayer(layer);
+          }
+        });
+      }  
     }
    
     async encontrarEndereco(endereco: any) {
@@ -123,5 +130,7 @@ export class ChartMapComponent implements OnInit {
         tiles.addTo(this.map);
 
       }
+
+
 
 }

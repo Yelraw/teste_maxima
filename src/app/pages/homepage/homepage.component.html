@@ -1,3 +1,6 @@
 <div style="display: flex;flex-direction:row">
-    <app-chart-map #mapaClientesLocalizacao [data]="cli" titulo="Clientes por Localização"></app-chart-map>
+    <app-chart-map #mapaClientesLocalizacao [data]="clients" titulo="Clientes por Localização"></app-chart-map>
+</div>
+<div style="display: flex;flex-direction:row">
+    <app-client-datatable [clients]="clients" ></app-client-datatable>
 </div>

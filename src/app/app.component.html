@@ -1,7 +1,7 @@
 <div class="app">
   <ul>
-    <li><a [ngClass]="{'active':page===''}" href="">Home</a></li>
-    <li><a [ngClass]="{'active':page==='cliente/novo'}" href="./cliente/novo">Cadastrar Clientes</a></li>
+    <li><a [ngClass]="{'active':page===''}" (click)="changePage()" href="">Home</a></li>
+    <li><a [ngClass]="{'active':page==='cliente/novo'}" (click)="changePage()" href="./cliente/novo">Cadastrar Clientes</a></li>
   </ul>
   <router-outlet> </router-outlet>
 </div>  

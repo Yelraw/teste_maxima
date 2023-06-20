@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartMapComponent } from 'src/app/components/chart-map/chart-map.component';
+import { ClientService } from 'src/app/services/client-service/client.service';
 
 @Component({
   selector: 'app-homepage',
@@ -11,17 +12,14 @@ export class HomepageComponent implements OnInit {
   @ViewChild('mapaClientesLocalizacao', { static: true })
   mapaClientesLocalizacao: ChartMapComponent = new ChartMapComponent;
 
-  cli = [
-    {
-      name: 'Teste 123',
-      lat: -16.328547,
-      lon: -48.953403
-      }
-    ]
+  clients: any;
 
-  constructor() { }
+  constructor(private clientService: ClientService) { }
 
   ngOnInit(): void {
+    this.clientService.getClients().then((data: any)=>{
+      this.clients = data;
+    })
   }
 
 }

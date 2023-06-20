@@ -1,161 +1,105 @@
-<div class="card">
-    <p-table
-        #dt2
-        [value]="clients"
-        dataKey="id"
-        [rows]="10"
-        [showCurrentPageReport]="true"
-        [rowsPerPageOptions]="[10, 25, 50]"
-        [loading]="loading"
-        [paginator]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
-        [tableStyle]="{ 'min-width': '75rem' }"
-        >
-        <ng-template pTemplate="caption">
-            <div class="flex">
-                <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width:10%">Código</th>
-                <th style="width:9%">Nome</th>
-                <th style="width:9%">Cnpj</th>
-                <th style="width:9%">Rua</th>
-                <th style="width:9%">Nº</th>
-                <th style="width:9%">Bairro</th>
-                <th style="width:9%">Cidade</th>
-                <th style="width:9%">Cep</th>
-                <th style="width:9%">Estado</th>
-                <th style="width:9%">País</th>
-                <th style="width:9%">Complemento</th>
-            </tr>
-            <tr>
-                <th>
-                    <p-columnFilter type="text" field="code"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="name"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="cnpj"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="street"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="number"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="district"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="city"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="cep"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="state"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="country"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="complement"></p-columnFilter>
-                </th>
-                
-
-                <!-- <th>
-                    <p-columnFilter field="representative" matchMode="in" [showMenu]="false">
-                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                            <p-multiSelect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
-                                <ng-template let-option pTemplate="item">
-                                    <div class="inline-block vertical-align-middle">
-                                        <img [alt]="option.label" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ option.image }}" width="24" class="vertical-align-middle" />
-                                        <span class="ml-1 mt-1">{{ option.name }}</span>
-                                    </div>
-                                </ng-template>
-                            </p-multiSelect>
-                        </ng-template>
-                    </p-columnFilter>
-                </th> -->
-                <!-- <th>
-                    <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
-                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                            <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
-                                <ng-template let-option pTemplate="item">
-                                    <p-tag [value]="option.value" [severity]="getSeverity(option.label)"></p-tag>
-                                </ng-template>
-                            </p-dropdown>
-                        </ng-template>
-                    </p-columnFilter>
-                </th> -->
-                <!-- <th>
-                    <p-columnFilter type="boolean" field="verified"></p-columnFilter>
-                </th> -->
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-client>
-            <tr>
-                <td>
-                    {{ client.code }}
-                </td>
-                <td>
-                    {{ client.name }}
-                </td>
-                <td>
-                    {{ client.cnpj}}
-                </td>
-                <td>
-                    {{ client.street }}
-                </td>
-                <td>
-                    {{ client.number }}
-                </td>
-                <td>
-                    {{ client.district }}
-                </td>
-                <td>
-                    {{ client.city }}
-                </td>
-                <td>
-                    {{ client.cep }}
-                </td>
-                <td>
-                    {{ client.state }}
-                </td>
-                <td>
-                    {{ client.country }}
-                </td>
-                <td>
-                    {{ client.complement }}
-                </td>
-                
-                <!-- <td>
-                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country.name }}</span>
-                </td>
-                <td>
-                    <img [alt]="customer.representative.name" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" width="32" style="vertical-align: middle" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.representative.name }}</span>
-                </td>
-                <td>
-                    <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)"></p-tag>
-                </td>
-                <td>
-                    <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
-                </td> -->
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="5">Nenhum cliente encontrado.</td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div>
+<div class="panel">
+    <h5 class="title">Todos os clientes</h5>
+    <div class="card">
+        <p-table 
+            #dt2
+            [value]="clients"
+            dataKey="id"
+            [rows]="10"
+            [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            [loading]="loading"
+            [paginator]="true"
+            currentPageReportTemplate="Mostrando de {first} até {last} de {totalRecords} entradas"
+            [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+            [tableStyle]="{ 'min-width': '75rem', }"
+            >
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Palavra chave" />
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:10%">Código</th>
+                    <th style="width:16%">Nome</th>
+                    <th style="width:12%">Cnpj</th>
+                    <th style="width:12%">Rua</th>
+                    <th style="width:5%">Nº</th>
+                    <th style="width:11%">Bairro</th>
+                    <th style="width:11%">Cidade</th>
+                    <th style="width:11%">Cep</th>
+                    <th style="width:11%">Complemento</th>
+                </tr>
+                <tr>
+                    <th>
+                        <p-columnFilter type="text" field="code"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="name"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="cnpj"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="street"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="number"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="district"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="city"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="cep"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="complement"></p-columnFilter>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-client>
+                <tr>
+                    <td>
+                        {{ client.code }}
+                    </td>
+                    <td>
+                        {{ client.name }}
+                    </td>
+                    <td>
+                        {{ client.cnpj}}
+                    </td>
+                    <td>
+                        {{ client.street }}
+                    </td>
+                    <td>
+                        {{ client.number }}
+                    </td>
+                    <td>
+                        {{ client.district }}
+                    </td>
+                    <td>
+                        {{ client.city }}
+                    </td>
+                    <td>
+                        {{ client.cep }}
+                    </td>
+                    <td>
+                        {{ client.complement }}
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="5">Nenhum cliente encontrado.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>   

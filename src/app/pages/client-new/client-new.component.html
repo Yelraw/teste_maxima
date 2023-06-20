@@ -1,1 +1,65 @@
-<p>client-new works!</p>
+<div class="panel">
+    <h2 class="title">Cadastrar cliente</h2>
+    <p-toast></p-toast>
+    <div class="form">
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="code">Código: </label>
+            <input class="inputform" pInputText id="code" aria-describedby="username-help" [(ngModel)]="code" />
+            <small *ngIf="validation.code" class="fieldEmpty" id="username-help">Campo código é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="name">Nome: </label>
+            <input class="inputform" pInputText id="name" aria-describedby="username-help" [(ngModel)]="name" />
+            <small *ngIf="validation.name" class="fieldEmpty" id="username-help">Campo Nome é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="cnpj">CNPJ:</label>
+            <input class="inputform" pInputText id="cnpj" aria-describedby="username-help" [(ngModel)]="cnpj" />
+            <small *ngIf="validation.cnpj" class="fieldEmpty" id="username-help">Campo CNPJ é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="street">Rua:</label>
+            <input class="inputform" pInputText id="street" aria-describedby="username-help" [(ngModel)]="street" />
+            <small *ngIf="validation.street" class="fieldEmpty" id="username-help">Campo rua é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="number">Numero:</label>
+            <input class="inputform" pInputText id="number" aria-describedby="username-help" [(ngModel)]="number" />
+            <small *ngIf="validation.number" class="fieldEmpty" id="username-help">Campo número é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="district">Bairro:</label>
+            <input class="inputform" pInputText id="district" aria-describedby="username-help" [(ngModel)]="district" />
+            <small *ngIf="validation.district" class="fieldEmpty" id="username-help">Campo bairro é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="city">Cidade:</label>
+            <input class="inputform" pInputText id="city" aria-describedby="username-help" [(ngModel)]="city" />
+            <small *ngIf="validation.city" class="fieldEmpty" id="username-help">Campo cidade é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="state">Estado:</label>
+            <input class="inputform" pInputText id="state" aria-describedby="username-help" [(ngModel)]="state" />
+            <small *ngIf="validation.state" class="fieldEmpty" id="username-help">Campo estado é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="country">País:</label>
+            <input class="inputform" pInputText id="country" aria-describedby="username-help" [(ngModel)]="country" />
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="cep">CEP:</label>
+            <input class="inputform" pInputText id="cep" aria-describedby="username-help" [(ngModel)]="cep" />
+            <small *ngIf="validation.cep" class="fieldEmpty" id="username-help">Campo cep é obrigatório.</small>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label class="labelform" htmlFor="complement">Complemento:</label>
+            <input class="inputform" pInputText id="complement" aria-describedby="username-help" [(ngModel)]="complement" />
+        </div>
+        <app-chart-map-add (markedlatlon)="markedlatlon($event)"></app-chart-map-add>
+        <small *ngIf="validation.location" class="fieldEmpty" id="username-help">A localização é obrigatória, por favor marque a localização desejada clicando no mapa.</small>
+        <div class="card flex justify-content-center" style="flex-direction: row;">
+            <button (click)="sendForm()" style="float:right; width: 180px; margin-top: 20px;" pButton pRipple label="Cadastrar" class="p-button-success"></button>
+            <p-button (onClick)="homePageRedirect()" style="float: right; width: 110px; margin-top: 20px;" label="Cancelar" styleClass="p-button-danger"></p-button>
+        </div>
+    </div>
+</div>
